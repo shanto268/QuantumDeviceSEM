@@ -95,7 +95,7 @@ for i, mask in enumerate(masks):
         continue
 
     # Calculate and display the size of the bounding box in nanometers
-    bbox_size_nm = (mask['bbox'][2] * phys_scale / pixel_scale, mask['bbox'][3] * 400 / 370)
+    bbox_size_nm = (mask['bbox'][2] * phys_scale / pixel_scale, mask['bbox'][3] * phys_scale / pixel_scale)
     
     fig, ax = plt.subplots(1)
     ax.imshow(masked_image)

@@ -2,14 +2,30 @@
 
 This program is designed to analyze Scanning Electron Microscope (SEM) images, specifically images of superconducting quantum devices. It uses the [Segment Anything library from Meta](segment-anything.com/demo) to identify and segment objects in the image.
 
-## Features
+## Table of Contents
+
+- [`extract_all_features.py`](#extract_all_features.py)
+- [`extract_select_features.py`](#extract_select_features.py)
+- [Installation](#installation)
+- [Work In Progress](#work-in-progress)
+- [Contributing](#contributing)
+- [License](#license)
+
+---
+
+## Program Functionality
+
+<details>
+<summary><a name="extract_all_features.py"></a>`extract_all_features.py`</summary>
+
+### Features
 
 - Takes an SEM image as input and generates masks for all objects in the image.
 - Displays each mask with a bounding box and the dimensions of the bounding box in nanometers.
 - Saves each masked image in a directory structure: `results/name of input image/mask#_date created`.
 - Extracts the scale from the image and converts it to nanometers, regardless of the original unit.
 
-## How It Works
+### How It Works
 
 The program works in several steps:
 
@@ -33,23 +49,49 @@ The program works in several steps:
 
 4. **Save Images**: The program saves each masked image in the `results/name of input image/` directory. The images are named according to the mask number and the date created.
 
-## Usage
+### Usage
 
 1. Run the program.
 2. When prompted, enter the path to the SEM image you want to analyze.
 3. The program will generate masks for all objects in the image and save the masked images in the `results/name of input image/` directory.
 
-## Requirements
+</details>
 
-- Python 3.7 or later
-- Segment Anything library from Meta
-- OpenCV
-- PyTesseract
-- Matplotlib
-- NumPy
-- PIL
+<details>
+<summary><a name="extract_select_features.py"></a>`extract_select_features.py`</summary>
 
-## Installation
+### Features
+
+- Takes an SEM image as input and generates masks for selected features in the image.
+- Allows user to select points on the image to generate masks for specific features.
+- Displays each mask with a bounding box and the dimensions of the bounding box in nanometers.
+- Saves each masked image in a directory structure: `results/name of input image/mask#_date created`.
+- Extracts the scale from the image and converts it to nanometers, regardless of the original unit.
+
+### How It Works
+
+The program works in several steps:
+
+1. **Load the 'Segment Anything' model**: The program loads the model from Meta's Segment Anything library.
+2. **Input SEM Image**: The user provides an SEM image as input.
+3. **Extract Scale**: The program extracts the scale bar length from the image.
+4. **Select Points**: The user selects points on the image.
+5. **Generate Masks**: The program generates masks to extract the feature.
+6. **Save Images**: The program saves the masked image.
+
+### Usage
+
+1. Run the program.
+2. When prompted, enter the path to the SEM image you want to analyze.
+3. Enter the pixel scale (default is 370).
+4. Enter the number of inputs.
+5. The program will generate masks for the selected features in the image and save the masked images in the `results/name of input image/` directory.
+
+</details>
+
+---
+
+<h2><a name="installation"></a>Installation</h2>
 
 1. Install Python 3.7 or later.
 2. Download the [checkpoint file from Meta](https://github.com/facebookresearch/segment-anything#model-checkpoints) and store them in the `weights` subdirectory and update the corresponding line in the main file
@@ -58,14 +100,14 @@ The program works in several steps:
 sam = sam_model_registry["vit_h"](checkpoint="weights/<checkpoint_file_name>")
 ```
 
-2. Install the required Python libraries. You can do this by running `pip install -r requirements.txt` in your terminal.
 3. Clone this repository to your local machine.
+4. Install the required Python libraries. You can do this by running `pip install -r requirements.txt` in your terminal.
 
 ## Work In Progress:
 
+- [x] Intelligent feature detection based on single shot supervised input
 - [ ] a GUI for this code
 - [ ] Batch Mode for bulk image processing (parallelized and GPU run process)
-- [ ] Intelligent feature detection based on single shot supervised training for batch mode analysis
 
 ## Contributing
 
@@ -74,4 +116,3 @@ Contributions are welcome. Please open an issue to discuss your ideas or submit 
 ## License
 
 This project is licensed under the MIT License. See the `LICENSE` file for details.
-

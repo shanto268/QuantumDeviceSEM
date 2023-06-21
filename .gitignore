@@ -1,5 +1,7 @@
 *.jpg
 *.png
 *.env
+todo.md
 results/*
 weights/*
+dev.ipynb
