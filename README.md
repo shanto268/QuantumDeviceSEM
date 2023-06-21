@@ -105,10 +105,10 @@ sam = sam_model_registry["vit_h"](checkpoint="weights/<checkpoint_file_name>")
 
 ## Work In Progress:
 
-- [x] Intelligent feature detection based on single shot supervised input
-- [x] a GUI for this code
-- [ ] Batch Mode for bulk image processing (parallelized and GPU run process)
 - [ ] Dynamic pixel scale extractor
+- [ ] Batch Mode Processor with GUI (user clicks on all features of all images)
+    - [ ] Feature size statistical analysis (emission file, histograms, tables)
+- [ ] Feature recognition in `extract_all_features.py` and statistical analysis
 - [ ] Negative mask click implementation
 
 ## Contributing
